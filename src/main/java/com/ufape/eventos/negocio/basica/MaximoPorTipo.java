@@ -1,6 +1,14 @@
 package com.ufape.eventos.negocio.basica;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class MaximoPorTipo {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private int qtdMaxima;
 	private String tipo;

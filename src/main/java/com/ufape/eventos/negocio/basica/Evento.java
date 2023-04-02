@@ -4,13 +4,36 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+
+@Entity
 public class Evento {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
 	private String nome;
+	
 	private int qtdTotalIngressos;
+	
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date data;
+	
+	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
+	
+	@OneToMany
 	private List<MaximoPorTipo> quantidadesMaximasPorTipo = new ArrayList<MaximoPorTipo>();
+	
+	@OneToMany
 	private List<Atividade> atividades = new ArrayList<Atividade>();
 
 	public Evento(){}

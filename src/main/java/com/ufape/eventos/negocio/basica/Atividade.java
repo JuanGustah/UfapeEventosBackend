@@ -2,8 +2,16 @@ package com.ufape.eventos.negocio.basica;
 
 import java.time.LocalTime;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Atividade {
-	private long codigo;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	private String localReferencia;
 	private String assunto;
 	private String atracao;
@@ -13,10 +21,10 @@ public class Atividade {
 	public Atividade(){}
 	
 	public long getCodigo() {
-		return codigo;
+		return id;
 	}
-	public void setCodigo(long codigo) {
-		this.codigo = codigo;
+	public void setCodigo(long id) {
+		this.id = id;
 	}
 	public String getLocalReferencia() {
 		return localReferencia;
