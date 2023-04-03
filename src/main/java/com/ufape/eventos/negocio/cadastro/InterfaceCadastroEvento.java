@@ -6,16 +6,13 @@ import com.ufape.eventos.negocio.basica.Evento;
 
 public interface InterfaceCadastroEvento {
 
-	List<Evento> procurarClienteNome(String nome);
+	List<Evento> procurarEventoNome(String nome);
 
-	Evento procurarClienteId(long id);
+	Evento procurarEventoId(long id);
 
-	List<Evento> listarClientes();
+	List<Evento> listarEventos();
 
-	void deletarClienteId(Long id);
+	void deletarEventoId(Long id);
 
-	Evento salvarCliente(Evento evento);
-
-	void deletarCliente(Evento cliente);
-
+	Evento salvarEvento(Evento evento);
 }

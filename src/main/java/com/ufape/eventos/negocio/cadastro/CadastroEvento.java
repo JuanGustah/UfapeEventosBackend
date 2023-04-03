@@ -14,32 +14,27 @@ public class CadastroEvento implements InterfaceCadastroEvento{
 	private ColecaoEvento colecaoEvento;
 	
 	@Override
-	public List<Evento> procurarClienteNome(String nome) {
+	public List<Evento> procurarEventoNome(String nome) {
 		return colecaoEvento.findByNomeContaining(nome);
 	}
 	
 	@Override
-	public Evento procurarClienteId(long id) {
+	public Evento procurarEventoId(long id) {
 		return colecaoEvento.findById(id).orElse(null);
 	}
 
 	@Override
-	public List<Evento> listarClientes() {
+	public List<Evento> listarEventos() {
 		return colecaoEvento.findAll();
 	}
 
 	@Override
-	public void deletarClienteId(Long id) {
+	public void deletarEventoId(Long id) {
 		colecaoEvento.deleteById(id);
 	}
 
 	@Override
-	public Evento salvarCliente(Evento evento) {
+	public Evento salvarEvento(Evento evento) {
 		return colecaoEvento.save(evento);
-	}
-	
-	@Override
-	public void deletarCliente(Evento cliente) {
-		colecaoEvento.delete(cliente);
 	}
 }

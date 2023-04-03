@@ -80,4 +80,7 @@ public class Evento {
 	public void setAtividades(List<Atividade> atividades) {
 		this.atividades = atividades;
 	}
+	public void addAtividade(Atividade atividade) {
+		this.atividades.add(atividade);
+	}
 }
