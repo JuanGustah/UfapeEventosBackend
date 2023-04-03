@@ -5,7 +5,6 @@ public abstract class Agencia {
 	private long id;
 	private String nome;
 	private String cnpj;
-	//Fazer lista depois
 	
 	
 	public Agencia() {}
