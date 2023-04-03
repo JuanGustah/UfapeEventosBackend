@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ufape.eventos.negocio.basica.Atividade;
+import com.ufape.eventos.negocio.basica.AtividadeNaoEncontradaException;
 import com.ufape.eventos.negocio.basica.Evento;
 import com.ufape.eventos.negocio.cadastro.InterfaceCadastroAtividade;
 import com.ufape.eventos.negocio.cadastro.InterfaceCadastroEvento;
+import com.ufape.eventos.negocio.basica.DataJaPassouException;
+import com.ufape.eventos.negocio.basica.EventoNaoEncontradoException;
 
 @Service
 public class GerenciadorEventos {
@@ -22,7 +25,7 @@ public class GerenciadorEventos {
 		return cadastroEvento.procurarEventoNome(nome);
 	}
 	
-	public Evento procurarEventoId(long id) {
+	public Evento procurarEventoId(long id) throws EventoNaoEncontradoException{
 		return cadastroEvento.procurarEventoId(id);
 	}
 
@@ -34,7 +37,7 @@ public class GerenciadorEventos {
 		cadastroEvento.deletarEventoId(id);
 	}
 
-	public Evento salvarEvento(Evento evento) {
+	public Evento salvarEvento(Evento evento) throws DataJaPassouException{
 		return cadastroEvento.salvarEvento(evento);
 	}
 	
@@ -47,7 +50,7 @@ public class GerenciadorEventos {
 		return cadastroAtividade.procurarAtividadeAtracao(nome);
 	}
 	
-	public Atividade procurarAtividadeId(long id) {
+	public Atividade procurarAtividadeId(long id) throws AtividadeNaoEncontradaException{
 		return cadastroAtividade.procurarAtividadeId(id);
 	}
 	
@@ -55,11 +58,11 @@ public class GerenciadorEventos {
 		cadastroAtividade.deletarAtividadeId(id);
 	}
 	
-	public Atividade salvarAtividade(Atividade atividade,Long idEvento) {
+	public Atividade salvarAtividade(Atividade atividade,Long idEvento) throws EventoNaoEncontradoException {
 		Evento evento = cadastroEvento.procurarEventoId(idEvento);
 		Atividade atividadeSalva = cadastroAtividade.salvarAtividade(atividade);
 		evento.addAtividade(atividadeSalva);
-		cadastroEvento.salvarEvento(evento);
+		cadastroEvento.atualizarEvento(evento);
 		return atividadeSalva;
 	}
 }

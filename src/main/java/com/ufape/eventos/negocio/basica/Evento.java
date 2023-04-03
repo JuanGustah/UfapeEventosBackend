@@ -59,7 +59,11 @@ public class Evento {
 	public Date getData() {
 		return data;
 	}
-	public void setData(Date data) {
+	public void setData(Date data) throws DataJaPassouException {
+		if(data.before(new Date())) {
+			throw new DataJaPassouException();
+		}
+		
 		this.data = data;
 	}
 	public Endereco getEndereco() {

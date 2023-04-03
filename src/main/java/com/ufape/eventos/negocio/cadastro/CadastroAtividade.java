@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ufape.eventos.dados.ColecaoAtividade;
 import com.ufape.eventos.negocio.basica.Atividade;
+import com.ufape.eventos.negocio.basica.AtividadeNaoEncontradaException;
 
 public class CadastroAtividade implements InterfaceCadastroAtividade {
 	private ColecaoAtividade colecaoAtividade;
@@ -19,8 +20,14 @@ public class CadastroAtividade implements InterfaceCadastroAtividade {
 	}
 	
 	@Override
-	public Atividade procurarAtividadeId(long id) {
-		return colecaoAtividade.findById(id).orElse(null);
+	public Atividade procurarAtividadeId(long id) throws AtividadeNaoEncontradaException{
+		Atividade atividade = colecaoAtividade.findById(id).orElse(null);
+		
+		if(atividade == null) {
+			throw new AtividadeNaoEncontradaException();
+		}
+		
+		return atividade;
 	}
 
 	@Override
