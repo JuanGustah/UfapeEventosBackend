@@ -1,7 +1,15 @@
 package com.ufape.eventos.negocio.basica;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public abstract class Agencia {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String nome;
 	private String cnpj;
@@ -28,6 +36,7 @@ public abstract class Agencia {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+	
 	
 
 }
