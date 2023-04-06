@@ -11,13 +11,17 @@ import com.ufape.eventos.negocio.basica.AgenciaImprensa;
 import com.ufape.eventos.negocio.basica.AgenciaImprensaNaoEncontradaException;
 import com.ufape.eventos.negocio.basica.Atividade;
 import com.ufape.eventos.negocio.basica.AtividadeNaoEncontradaException;
+import com.ufape.eventos.negocio.basica.DataIngressoJaPassouException;
 import com.ufape.eventos.negocio.basica.Evento;
 import com.ufape.eventos.negocio.cadastro.InterfaceCadastroAgenciaEventos;
 import com.ufape.eventos.negocio.cadastro.InterfaceCadastroAgenciaImprensa;
 import com.ufape.eventos.negocio.cadastro.InterfaceCadastroAtividade;
 import com.ufape.eventos.negocio.cadastro.InterfaceCadastroEvento;
+import com.ufape.eventos.negocio.cadastro.InterfaceCadastroIngressos;
 import com.ufape.eventos.negocio.basica.DataJaPassouException;
 import com.ufape.eventos.negocio.basica.EventoNaoEncontradoException;
+import com.ufape.eventos.negocio.basica.Ingresso;
+import com.ufape.eventos.negocio.basica.IngressoNaoEncontradoException;
 
 @Service
 public class GerenciadorEventos {
@@ -29,6 +33,8 @@ public class GerenciadorEventos {
 	private InterfaceCadastroAgenciaImprensa cadastroAgenciaImprensa;
 	@Autowired
 	private InterfaceCadastroAgenciaEventos  cadastroAgenciaEventos;
+	@Autowired
+	private InterfaceCadastroIngressos  cadastroIngressos;
 	
 	//Eventos
 	public List<Evento> procurarEventoNome(String nome) {
@@ -140,6 +146,31 @@ public class GerenciadorEventos {
 	
 	public void deletarAgenciaEventos(AgenciaEventos agenciaEventos) throws AgenciaEventosNaoEncontradaException{
 		cadastroAgenciaEventos.deletarAgenciaEventos(agenciaEventos);
+	}
+	
+	//Ingressos
+	public List<Ingresso> procurarIngressoTipo(String tipo){
+		 return cadastroIngressos.procurarIngressoTipo(tipo);
+	}
+	
+	public Ingresso procurarIngressoId(long id) throws IngressoNaoEncontradoException{
+		return cadastroIngressos.procurarIngressoId(id);
+	}
+	
+	public List<Ingresso> listarIngressos(){
+		return cadastroIngressos.listarIngressos();
+	}
+	
+	public void deletarIngressoId(Long id) {
+		cadastroIngressos.deletarIngressoId(id);
+	}
+	
+	public Ingresso salvarIngresso(Ingresso ingresso) throws DataIngressoJaPassouException{
+		return cadastroIngressos.salvarIngresso(ingresso);
+	}
+	
+	public Ingresso atualizarIngresso(Ingresso ingresso){
+		return cadastroIngressos.atualizarIngresso(ingresso);
 	}
 	
 }
