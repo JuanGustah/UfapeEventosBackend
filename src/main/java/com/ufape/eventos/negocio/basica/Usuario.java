@@ -13,7 +13,7 @@ public abstract class Usuario {
     public Usuario() {
         ingressos = new ArrayList<Ingresso>(); //Inicialização da lista de ingressos
     }
-    
+
     public long getId() {
         return id;
     }
