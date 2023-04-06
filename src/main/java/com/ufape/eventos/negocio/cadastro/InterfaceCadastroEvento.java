@@ -3,6 +3,7 @@ package com.ufape.eventos.negocio.cadastro;
 import java.util.List;
 
 import com.ufape.eventos.negocio.basica.Evento;
+import com.ufape.eventos.controller.dto.AtualizarEventoRequest;
 import com.ufape.eventos.negocio.basica.DataJaPassouException;
 import com.ufape.eventos.negocio.basica.EventoNaoEncontradoException;
 
@@ -14,9 +15,9 @@ public interface InterfaceCadastroEvento {
 
 	List<Evento> listarEventos();
 
-	void deletarEventoId(Long id);
+	void deletarEventoId(Long id) throws EventoNaoEncontradoException;
 
 	Evento salvarEvento(Evento evento) throws DataJaPassouException;
 	
-	Evento atualizarEvento(Evento evento);
+	Evento atualizarEvento(AtualizarEventoRequest dadosAtualizadosEvento,long idEvento) throws DataJaPassouException,EventoNaoEncontradoException;
 }

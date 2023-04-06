@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ufape.eventos.controller.dto.AtualizarEventoRequest;
 import com.ufape.eventos.dados.ColecaoEvento;
 import com.ufape.eventos.negocio.basica.DataJaPassouException;
 import com.ufape.eventos.negocio.basica.EventoNaoEncontradoException;
@@ -38,7 +39,13 @@ public class CadastroEvento implements InterfaceCadastroEvento{
 	}
 
 	@Override
-	public void deletarEventoId(Long id) {
+	public void deletarEventoId(Long id) throws EventoNaoEncontradoException{
+		Evento evento = colecaoEvento.findById(id).orElse(null);
+		
+		if(evento == null) {
+			throw new EventoNaoEncontradoException();
+		}
+		
 		colecaoEvento.deleteById(id);
 	}
 
@@ -50,8 +57,24 @@ public class CadastroEvento implements InterfaceCadastroEvento{
 		return colecaoEvento.save(evento);
 	}
 	
+
 	@Override
-	public Evento atualizarEvento(Evento evento) {
+	public Evento atualizarEvento(AtualizarEventoRequest dadosAtualizadosEvento,long idEvento) throws DataJaPassouException,EventoNaoEncontradoException{
+		Evento evento = colecaoEvento.findById(idEvento).orElse(null);
+		
+		if(evento == null) {
+			throw new EventoNaoEncontradoException();
+		}
+		
+		if(dadosAtualizadosEvento.getData().before(new Date())) {
+			throw new DataJaPassouException();
+		}
+		
+		evento.setNome(dadosAtualizadosEvento.getNome());
+		evento.setQtdTotalIngressos(dadosAtualizadosEvento.getQtdTotalIngressos());
+		evento.setData(dadosAtualizadosEvento.getData());
+		evento.setEndereco(dadosAtualizadosEvento.getEndereco());
+		
 		return colecaoEvento.save(evento);
 	}
 }

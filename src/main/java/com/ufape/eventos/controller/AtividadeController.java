@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ufape.eventos.negocio.basica.Atividade;
 import com.ufape.eventos.negocio.basica.AtividadeNaoEncontradaException;
+import com.ufape.eventos.negocio.basica.DataJaPassouException;
 import com.ufape.eventos.negocio.basica.EventoNaoEncontradoException;
 import com.ufape.eventos.negocio.fachada.GerenciadorEventos;
 
@@ -26,6 +27,9 @@ public class AtividadeController {
 		try {
 			return ResponseEntity.ok(gerenciadorEventos.salvarAtividade(atividade,idEvento));
 		} catch (EventoNaoEncontradoException e) {
+			return new ResponseEntity<Atividade> (HttpStatus.BAD_REQUEST);
+		}
+		catch (DataJaPassouException e) {
 			return new ResponseEntity<Atividade> (HttpStatus.BAD_REQUEST);
 		}
 	}
