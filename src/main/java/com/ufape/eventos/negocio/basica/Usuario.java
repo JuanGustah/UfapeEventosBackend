@@ -1,19 +1,26 @@
 package com.ufape.eventos.negocio.basica;
 
 import java.util.List;
-import java.util.ArrayList;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+
+@Entity
 public abstract class Usuario {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
     private String login;
     private String senha;
     private List<Ingresso> ingressos; //Nova lista de ingressos
     
-    public Usuario() {
-        ingressos = new ArrayList<Ingresso>(); //Inicialização da lista de ingressos
-    }
-
+    //ConstrutorVazio gerenciado pelo spring
+    public Usuario() {}
+    
     public long getId() {
         return id;
     }
