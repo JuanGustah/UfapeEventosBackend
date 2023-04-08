@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ufape.eventos.dados.ColecaoIngressos;
 import com.ufape.eventos.negocio.basica.DataIngressoJaPassouException;
 import com.ufape.eventos.negocio.basica.Ingresso;
 import com.ufape.eventos.negocio.basica.IngressoNaoEncontradoException;
 
+@Service
 public class CadastroIngressos implements InterfaceCadastroIngressos {
 	@Autowired
 	private ColecaoIngressos colecaoIngressos;

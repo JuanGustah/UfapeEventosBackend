@@ -1,8 +1,13 @@
 package com.ufape.eventos.negocio.basica;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
+
+import jakarta.persistence.Entity;
+
+@Entity
 public class Imprensario extends Usuario {
 	
 	List <Ingresso> ingressos = new ArrayList<Ingresso>();

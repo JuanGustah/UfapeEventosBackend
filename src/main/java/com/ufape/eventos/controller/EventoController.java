@@ -43,7 +43,7 @@ public class EventoController {
 		}
 	}
 	
-	@PatchMapping(value = "/evento/${eventoId}")
+	@PatchMapping(value = "/evento/{eventoId}")
 	public ResponseEntity<Evento> atualizarEvento(@PathVariable long eventoId, @RequestBody AtualizarEventoRequest evento) {
 		try {
 			return ResponseEntity.ok(gerenciadorEventos.atualizarEvento(evento,eventoId));

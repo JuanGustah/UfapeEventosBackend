@@ -20,7 +20,7 @@ public class AgenciaEventosController {
 	@Autowired
 	private GerenciadorEventos gerenciadorEventos;
 	
-	@PostMapping(value = "/evento")
+	@PostMapping(value = "/agenciaEventos")
 	public ResponseEntity<AgenciaEventos> adicionarAgenciaEventos(@RequestBody AgenciaEventos agenciaEventos) {
 			return ResponseEntity.ok(gerenciadorEventos.salvarAgenciaEventos(agenciaEventos));
 	}
