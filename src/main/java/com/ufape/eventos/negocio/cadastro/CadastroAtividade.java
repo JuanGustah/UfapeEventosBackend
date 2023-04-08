@@ -2,11 +2,16 @@ package com.ufape.eventos.negocio.cadastro;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.ufape.eventos.dados.ColecaoAtividade;
 import com.ufape.eventos.negocio.basica.Atividade;
 import com.ufape.eventos.negocio.basica.AtividadeNaoEncontradaException;
 
+@Service
 public class CadastroAtividade implements InterfaceCadastroAtividade {
+	@Autowired
 	private ColecaoAtividade colecaoAtividade;
 	
 	@Override

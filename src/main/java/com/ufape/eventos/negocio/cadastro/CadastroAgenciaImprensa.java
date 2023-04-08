@@ -3,23 +3,25 @@ package com.ufape.eventos.negocio.cadastro;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ufape.eventos.dados.ColecaoAgenciaImprensa;
 import com.ufape.eventos.negocio.basica.AgenciaImprensa;
 import com.ufape.eventos.negocio.basica.AgenciaImprensaNaoEncontradaException;
 
+@Service
 public class CadastroAgenciaImprensa implements InterfaceCadastroAgenciaImprensa {
 	@Autowired
 	private ColecaoAgenciaImprensa colecaoAgenciaImprensa;
 	
 	@Override
 	public List<AgenciaImprensa> procurarAgenciaImprensaNome(String nome){
-		return colecaoAgenciaImprensa.FindByNomeContaining(nome);
+		return colecaoAgenciaImprensa.findByNomeContaining(nome);
 	}
 	
 	@Override
 	public List<AgenciaImprensa> procurarAgenciaImprensaCnpj(String cnpj) {
-		return colecaoAgenciaImprensa.FindByCnpjContaining(cnpj);
+		return colecaoAgenciaImprensa.findByCnpjContaining(cnpj);
 	}
 	
 	@Override
