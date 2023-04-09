@@ -2,6 +2,15 @@ package com.ufape.eventos.negocio.basica;
 
 import java.util.List;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+
+
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,6 +18,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 import java.util.ArrayList;
+
 
 @Entity
 public abstract class Usuario {
@@ -21,10 +31,9 @@ public abstract class Usuario {
     @OneToMany
     private List<Ingresso> ingressos; //Nova lista de ingressos
     
-    public Usuario() {
-        ingressos = new ArrayList<Ingresso>(); //Inicialização da lista de ingressos
-    }
-
+    //ConstrutorVazio gerenciado pelo spring
+    public Usuario() {}
+    
     public long getId() {
         return id;
     }
