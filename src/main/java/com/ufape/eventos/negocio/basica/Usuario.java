@@ -28,7 +28,6 @@ public abstract class Usuario {
     private String nome;
     private String login;
     private String senha;
-    
     @OneToMany
     private List<Ingresso> ingressos; //Nova lista de ingressos
     
